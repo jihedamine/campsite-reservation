@@ -13,7 +13,9 @@ The system exposes a REST API to:
 
 - Provide a list of available dates for a given range of days (with the default being 30 days) to make a reservation.
 
-`GET http://<host>:<port>/reservation/availableDates?nbDays=<number-of-days>`
+```
+curl -X "GET" http://<host>:<port>/reservations/availableDates?nbDays=<number-of-days>`
+```
 
 - Make a reservation, providing
   - email
@@ -23,17 +25,44 @@ The system exposes a REST API to:
 
 If the reservation request succeeded, a unique reservation identifier is returned to the API caller.
 
-`POST http://<host>:<port>/reservation?email=<email>&fullName=<fullname>&arrivalDate=<ddmmYYYY>&departureDate=<ddmmYYYY>`
+```
+curl -X "POST" "http://<host>:<port>/reservations"
+   -i
+   -H 'Content-Type: application/json'
+   -d $'{
+    "checkInDate": "2020-03-01",
+    "checkOutDate": "2020-03-08",
+    "fullName": "John Doe",
+    "email": "john.doe@email.com"
+   }'
+```
 
 - Modify a reservation
 
-`PUT http://<host>:<port>/reservation/<reservation-id>[?email=<new-email>][&fullName=<new-fullname>&arrivalDate=<ddmmYYYY>&departureDate=<ddmmYYYY>`
+```
+curl -X "PUT" "http://<host>:<port>/reservations/<reservation-id>"
+   -i
+   -H 'Content-Type: application/json'
+   -d $'{
+    "checkInDate": "2020-03-01",
+    "checkOutDate": "2020-03-08",
+    "fullName": "John Doe",
+    "email": "john.doe@email.com"
+   }'
+```
 
 - Cancel a reservation
 
-`DELETE http://<host>:<port>/reservation/<reservation-id>`
+```
+curl -X "DELETE" http://<host>:<port>/reservations/<reservation-id>`
+```
 
 The system:
 - Gracefully handles concurrent requests to reserve the campsite.
 - Is able to handle a large volume of requests for getting the campsite availability.
 - Provides appropriate error messages to the caller to indicate the error cases.
+
+## Reservation dates
+
+- The dates represent local dates in the campsite timezone.
+- As the check-in and check-out times are 12:00 AM, we omit the time portion when modeling dates.
