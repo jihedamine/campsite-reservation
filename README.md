@@ -31,7 +31,7 @@ curl -X "POST" "http://<host>:<port>/reservations"
    }'
 ```
 
-- Modify a reservation using its id
+- Modify a reservation using its id. In the posted reservation JSON, all the fields are optional and only the provided field values will get applied as updates to the existing reservation.
 
 ```
 curl -X "PUT" "http://<host>:<port>/reservations/<reservation-id>"

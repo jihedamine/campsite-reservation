@@ -1,5 +1,8 @@
 package campsite.reservation.concurrent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -8,6 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * Striped lock, allows synchronizing on a subset of locks
  */
 public class StripedLocks {
+    private final static Logger logger = LoggerFactory.getLogger(StripedLocks.class.getName());
 
     private Lock[] locks;
     private int maxWaitSeconds;
@@ -44,11 +48,14 @@ public class StripedLocks {
         if (locks[currentIdx].tryLock(maxWaitSeconds, TimeUnit.SECONDS)) {
             try {
                 if (currentIdx == endIdx) {
+                    logger.debug("Acquired all locks, will run runnable");
                     runnable.run();
                 } else {
+                    logger.debug("Acquired lock " + currentIdx);
                     getLocksRecursively(currentIdx + 1, endIdx, runnable);
                 }
             } finally {
+                logger.debug("Releasing lock " + currentIdx);
                 locks[currentIdx].unlock();
             }
         }
