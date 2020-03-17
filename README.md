@@ -61,6 +61,10 @@ The system:
 - The dates represent local dates in the campsite timezone.
 - As the check-in and check-out times are 12:00 AM, we omit the time portion when modeling dates.
 
+## Application parameters
+
+The property ```request.maxWaitSeconds``` in the properties file ```application.properties``` allows setting the maximum number of seconds to wait to acquire a lock in order to perform an operation on a reservation that requires synchronization.
+
 ## Running the application
 
 The source code language level is Java 11, so you need a JDK 11 or a more recent version to compile the code.
