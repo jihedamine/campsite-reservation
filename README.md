@@ -17,13 +17,7 @@ The system exposes a REST API to:
 curl -X "GET" http://<host>:<port>/reservations/availableDates?nbDays=<number-of-days>`
 ```
 
-- Make a reservation, providing
-  - email
-  - full name
-  - arrival date
-  - departure date
-
-If the reservation request succeeded, a unique reservation identifier is returned to the API caller.
+- Make a reservation, the check-in date, check-out date, email and full name of the reserving person. If the reservation request succeeded, a unique reservation identifier is returned to the API caller.
 
 ```
 curl -X "POST" "http://<host>:<port>/reservations"
@@ -37,7 +31,7 @@ curl -X "POST" "http://<host>:<port>/reservations"
    }'
 ```
 
-- Modify a reservation
+- Modify a reservation using its id
 
 ```
 curl -X "PUT" "http://<host>:<port>/reservations/<reservation-id>"
@@ -51,7 +45,7 @@ curl -X "PUT" "http://<host>:<port>/reservations/<reservation-id>"
    }'
 ```
 
-- Cancel a reservation
+- Cancel a reservation using its id
 
 ```
 curl -X "DELETE" http://<host>:<port>/reservations/<reservation-id>`
@@ -66,3 +60,22 @@ The system:
 
 - The dates represent local dates in the campsite timezone.
 - As the check-in and check-out times are 12:00 AM, we omit the time portion when modeling dates.
+
+## Running the application
+
+The source code language level is Java 11, so you need a JDK 11 or a more recent version to compile the code.
+
+To run the application, clone this repository and open a terminal at the root folder of the repository.
+
+Either build a jar and run it:
+
+```
+$> mvn package
+$> java -jar target/wikipedia_search-1.0-SNAPSHOT.jar
+```
+
+Or directly run the spring boot maven goal
+
+```
+$> mvn spring-boot:run
+```
