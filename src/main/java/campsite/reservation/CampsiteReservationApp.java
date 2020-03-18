@@ -28,7 +28,7 @@ public class CampsiteReservationApp {
     private static String getEndpointsMessage(String endpointPrefix) {
         return "The application exposes a REST API that provides the following capabilities:\n" +
                 "- Provide a list of available dates for a given range of days (with the default being 30 days) to make a reservation\n" +
-                "GET " + endpointPrefix + "/reservations/availableDates?nbDays=<number-of-days>\n" +
+                " curl -X \"GET\" " + endpointPrefix + "/reservations/availableDates?nbDays=<number-of-days>\n" +
                 "- Make a reservation, providing the check-in date, check-out date, email and full name of the reserving person:\n" +
                 "curl -X \"POST\" \"" + endpointPrefix + "/reservations\"\n" +
                 "   -i\n" +

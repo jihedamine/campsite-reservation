@@ -75,7 +75,7 @@ Either build a jar and run it:
 
 ```
 $> mvn package
-$> java -jar target/wikipedia_search-1.0-SNAPSHOT.jar
+$> java -jar target/campsite-reservation-1.0-SNAPSHOT.jar
 ```
 
 Or directly run the spring boot maven goal
