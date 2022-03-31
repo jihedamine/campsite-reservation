@@ -13,7 +13,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <java.version>11</java.version>
-        <spring-boot.version>2.2.4.RELEASE</spring-boot.version>
+        <spring-boot.version>2.5.12</spring-boot.version>
         <derby.version>10.14.2.0</derby.version>
         <assertj.version>3.15.0</assertj.version>
         <mockito.version>3.3.0</mockito.version>
