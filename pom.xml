@@ -14,7 +14,7 @@
 
         <java.version>11</java.version>
         <spring-boot.version>2.2.4.RELEASE</spring-boot.version>
-        <derby.version>10.14.2.0</derby.version>
+        <derby.version>10.17.1.0</derby.version>
         <assertj.version>3.15.0</assertj.version>
         <mockito.version>3.3.0</mockito.version>
     </properties>
